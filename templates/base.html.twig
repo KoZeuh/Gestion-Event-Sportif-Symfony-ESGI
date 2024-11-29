@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>
+            {% block title %}Welcome!{% endblock %}
+        </title>
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v6.2.0/css/pro.min.css"/>
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block navbar %}
+            {% include 'partials/_navbar.html.twig' %}
+        {% endblock %}
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="text-center py-3">
+                    <span class="py-2 badge rounded-pill text-bg-{{ label }}">{{ message }}</span>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block body %}{% endblock %}
+
+        {% block footer %}
+            {% include 'partials/_footer.html.twig' %}
+        {% endblock %}
+    </body>
+</html>
